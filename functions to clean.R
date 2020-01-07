@@ -1,4 +1,4 @@
-library(stringi)
+library('stringi')
 library('lsa')
 library('tm')
 library('tidyverse')
@@ -9,16 +9,17 @@ library(conflicted)
 conflict_prefer('mutate', 'dplyr')
 conflict_prefer('filter', 'dplyr')
 
+#Load stopwords for German from 'lsa'-package
 stopwords <- stopwords_de %>% 
   tibble()
 
+#Function to prepare the preloaded text and format it correctly as one-token-dataframe, without stopwords or 1-character-words
 prepare_text <- function(text_char) {
   text_char <- gsub('\n', ' ', text_char)
   text_char <- tibble(text_char) %>%
     unnest_tokens(
       tbl = .,
       input = .,
-      #specific column
       output = 'word',
       token = 'ngrams',
       n = 1,
@@ -35,7 +36,7 @@ prepare_text <- function(text_char) {
     rowid_to_column("id") #provide a unique id
 }
 
-#Importing and unnesting the negative sentiment list
+#Importing and unnesting the negative sentiment list (see thesis for source)
 sent_negative <-
   import(
     '/Users/Constanze/Desktop/uni/ba arbeit/sentiment analysis/SentiWS_v2.0/SentiWS_v2.0_Negative.txt')
@@ -86,6 +87,7 @@ sent_positive <- sent_positive %>%
 sent_positive <- sent_positive %>% 
   filter(!V3=='')
 
+#Add the sentiment scores from the list to the 1-token-dataframe
 add_sent <- function(text_char, direction = 'negative') {
   if (direction == 'negative') {
     text_char %>%
@@ -98,6 +100,7 @@ add_sent <- function(text_char, direction = 'negative') {
     }
 }
 
+#Sort the produced dataframe
 create_overall_sentiment <- function(text_char) {
   text_char <- add_sent(text_char, 'negative')
   text_char <- add_sent(text_char, 'positive')
@@ -109,7 +112,7 @@ create_overall_sentiment <- function(text_char) {
     rowid_to_column(., "sent_id")
 }
 
-#negation
+#Negation handling 
 check_negation <- function(text_char) {
   negation1 <- c('nicht', 'kein', 'keine', 'keinem', 'keines', 'niemand') %>% 
     tibble()
@@ -133,7 +136,7 @@ check_negation <- function(text_char) {
     mutate(negation = ifelse(word %in% negation$.,-1, 1))
 }
 
-#add distance
+#add distance metric for calculation of distance between sentiment and negation 
 calculate_distance <- function(text_char, direction='sentiment') {
   
   if (direction == 'negative') {
