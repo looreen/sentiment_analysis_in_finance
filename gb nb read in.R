@@ -1,0 +1,46 @@
+library(tabulizer)
+library(tesseract)
+
+
+file_path_gb <-
+  '/Users/Constanze/Desktop/uni/ba arbeit/sentiment analysis/Berichte/geschäftsberichte'
+file_names_gb <-
+  file.path(file_path_gb, list.files(file_path_gb), sep = '/')
+
+#GB NB Section
+aurubis_gb_nb<- extract_text(file = file_names_gb[4])
+brenntag_gb_nb <- extract_text(file = file_names_gb[7], pages = 35:38)
+commerzbank_gb_nb <- extract_text(file = file_names_gb[8], pages = 50:62)
+deliveryhero_gb_nb <- extract_text(file = file_names_gb[10], pages = 46:55)
+deutscheuroshop_gb_nb <- extract_text(file = file_names_gb[11], pages = 76:80)
+deutschepfandbriefbank_gb_nb <- extract_text(file = file_names_gb[12], pages = 353:396)
+deutschewohnen_gb_nb <- extract_text(file = file_names_gb[13], pages = 143:153)
+duerr_gb_nb <- extract_text(file = file_names_gb[14], pages = 41:48)
+evonik_gb_nb <- extract_text(file = file_names_gb[15], pages = 42:48)
+fraport_gb_nb <- extract_text(file = file_names_gb[18], pages = 25:51)
+freenet_gb_nb <- extract_text(file = file_names_gb[19], pages = 77:87)
+fuchs_gb_nb <- extract_text(file = file_names_gb[20], pages = 105:111)
+gea_gb_nb <- extract_text(file = file_names_gb[21], pages = 89:114)
+gerresheimer_gb_nb <- extract_text(file = file_names_gb[22], pages = 63:80)
+hella_gb_nb <- extract_text(file = file_names_gb[24], pages = 100:107)
+hochtief_gb_nb <- extract_text(file = file_names_gb[25], pages = 130:149)
+hugoboss_gb_nb <- extract_text(file = file_names_gb[26], pages = 49:62)
+kunds_gb_nb <- extract_text(file = file_names_gb[28], pages = 59:70)
+lanxess_gb_nb <- extract_text(file = file_names_gb[30], pages = 8:48)
+morphosys_gb_nb <- extract_text(file = file_names_gb[33], pages = 78:83)
+mtuaerosystems_gb_nb <- extract_text(file = file_names_gb[34], pages = 93:104)
+nemetschek_gb_nb <- extract_text(file = file_names_gb[35], pages = 52:58)
+osram_gb_nb <- extract_text(file = file_names_gb[37], pages = 189:204)
+p7s1_gb_nb <- extract_text(file = file_names_gb[38], pages = 96:105)
+puma_gb_nb <- extract_text(file = file_names_gb[39], pages = 63:87)
+rheinmetall_gb_nb <- extract_text(file = file_names_gb[40], pages = 104:121)
+sartorius_gb_nb <- extract_text(file = file_names_gb[43], pages = 87:102)
+siltronic_gb_nb <- extract_text(file = file_names_gb[46], pages = 90:109)
+softwareag_gb_nb <- extract_text(file = file_names_gb[47], pages = 80:99)
+symrise_gb_nb <- extract_text(file = file_names_gb[48], pages = 84:101)
+uniper_gb_nb <- extract_text(file = file_names_gb[51], pages = 108:125)
+wackerchemie_gb_nb <- extract_text(file = file_names_gb[53], pages = 199:212)
+zalando_gb_nb <- extract_text(file = file_names_gb[54], pages = 12:47)
+
+#rheinmetall_gb_nb <- ocr('/Users/Constanze/Desktop/uni/ba arbeit/sentiment analysis/Berichte/zzzrheinmetall gb 2018 nb.pdf')
+rheinmetall_gb_nb <- ocr(list.files(pattern = "zzzrheinmetall"))
