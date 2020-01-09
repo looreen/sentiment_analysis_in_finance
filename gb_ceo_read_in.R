@@ -3,7 +3,7 @@ library(tesseract)
 
 
 file_path_gb <-
-  '/Users/Constanze/Desktop/uni/ba arbeit/sentiment analysis/Berichte/geschäftsberichte'
+  '/your/path/to/annual/reports'
 file_names_gb <-
   file.path(file_path_gb, list.files(file_path_gb), sep = '/')
 
