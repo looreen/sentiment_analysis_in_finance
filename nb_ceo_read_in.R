@@ -2,7 +2,7 @@ library(tabulizer)
 library(tesseract)
 
 file_path_nb <-
-  '/Users/Constanze/Desktop/uni/ba arbeit/sentiment analysis/Berichte/nachhaltigkeitsberichte'
+  '/your/path/to/sustainability/reports'
 file_names_nb <- file.path(file_path_nb, list.files(file_path_nb), sep = '/')
 
 einsundeins_nb_ceo <- extract_text(file_names_nb[1], pages=4)
