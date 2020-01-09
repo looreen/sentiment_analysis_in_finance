@@ -25,7 +25,7 @@ sine_curve <- ggplot(sine, aes(t, y))+geom_path(size=2)+
 
 sine_curve
 
-ggsave(file="/Users/Constanze/Desktop/uni/ba arbeit/Sine_curve.png", plot=sine_curve, width=10, height=8)
+ggsave(file="/your/path/to/graphics/Sine_curve.png", plot=sine_curve, width=10, height=8)
 
 viridis(5)
 
@@ -64,4 +64,4 @@ shifted <- ggplot(shifted_tidy, aes(x=value, y= shifted_value, col=distance))+
   scale_color_viridis(name='Distance a', discrete = T)
 
 shifted
-ggsave(filename = '/Users/Constanze/Desktop/uni/ba arbeit/shifted.pdf', plot = shifted)         
+ggsave(filename = '/your/path/to/graphics/shifted.pdf', plot = shifted)         
