@@ -3,7 +3,7 @@ library(tesseract)
 
 
 file_path_gb <-
-  '/Users/Constanze/Desktop/uni/ba arbeit/sentiment analysis/Berichte/geschäftsberichte'
+  '/your/path/to/annual/reports'
 file_names_gb <-
   file.path(file_path_gb, list.files(file_path_gb), sep = '/')
 
@@ -42,5 +42,5 @@ uniper_gb_nb <- extract_text(file = file_names_gb[51], pages = 108:125)
 wackerchemie_gb_nb <- extract_text(file = file_names_gb[53], pages = 199:212)
 zalando_gb_nb <- extract_text(file = file_names_gb[54], pages = 12:47)
 
-#rheinmetall_gb_nb <- ocr('/Users/Constanze/Desktop/uni/ba arbeit/sentiment analysis/Berichte/zzzrheinmetall gb 2018 nb.pdf')
+#rheinmetall_gb_nb <- ocr('/your/path/to/annual/reports/zzzrheinmetall gb 2018 nb.pdf')
 rheinmetall_gb_nb <- ocr(list.files(pattern = "zzzrheinmetall"))
