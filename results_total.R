@@ -70,7 +70,7 @@ ggplot(filtered, aes(company,net_sum_weight, fill=report_type))+
        x= 'Company',
        fill='Report type')
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/net_sum_weight_gbs.pdf')
+ggsave('/your/path/to/graphics/net_sum_weight_gbs.pdf')
 
 filtered %>% 
   ggplot(., aes(reorder(as.numeric(company), net_sum_weight), net_sum_weight, fill=report_type))+
@@ -97,7 +97,7 @@ filtered %>%
   labs(y='Weighted net sentiment in absolute values',
        x= 'Company')
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/barplot_gb.pdf')
+ggsave('/your/path/to/graphics/barplot_gb.pdf')
 
 gb_ceo_all %>% 
   filter(report=='wackerchemie_gb_ceo') %>% 
@@ -119,7 +119,7 @@ gb_ceo_all %>%
        x= 'Word', 
        fill='Original sentiment')
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/sentiment_words_wacker.pdf')
+ggsave('/your/path/to/graphics/sentiment_words_wacker.pdf')
 
 gb_ceo_all %>% 
   filter(report=='zalando_gb_ceo') %>% 
@@ -141,7 +141,7 @@ gb_ceo_all %>%
        x= 'Word', 
        fill='Original sentiment')
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/sentiment_words_zalando.pdf')
+ggsave('/your/path/to/graphics/sentiment_words_zalando.pdf')
 
 gb_ceo_all %>% 
   filter(report=='symrise_gb_ceo') %>% 
@@ -163,7 +163,7 @@ gb_ceo_all %>%
        x= 'Word', 
        fill='Original sentiment')
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/sentiment_words_symrise.pdf')
+ggsave('/your/path/to/graphics/sentiment_words_symrise.pdf')
 
 gb_ceo_all %>% 
   filter(report=='p7s1_gb_ceo') %>% 
@@ -211,7 +211,7 @@ gb_ceo_all %>%
        x= 'Word', 
        fill='Original sentiment')
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/sentiment_aurubis.pdf')
+ggsave('/your/path/to/graphics/sentiment_aurubis.pdf')
 
 
 gb_ceo_all %>% 
@@ -234,7 +234,7 @@ gb_ceo_all %>%
        x= 'Word', 
        fill='Original sentiment')
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/negative_commerzbank.pdf')
+ggsave('/your/path/to/graphics/negative_commerzbank.pdf')
 
 
 filtered %>% 
@@ -279,7 +279,7 @@ scale_fill_viridis(discrete = T,
   labs(y='Weighted positive sentiment in absolute values',
        x= 'Company')
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/sum_pos_weight_gbs.pdf')
+ggsave('/your/path/to/graphics/sum_pos_weight_gbs.pdf')
 
 #Create a graph to look at the sum_neg_weight for all report types for the same companies
 columns_of_interest <- results_total[,c(8,11,12)]
@@ -318,7 +318,7 @@ ggplot(filtered, aes(company,sum_neg_weight, fill=report_type))+
         legend.title = element_text(size = 20))+
   labs(y='Weighted positive sentiment in absolute values',
        x= 'Company')
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/sum_neg_weight_gbs.pdf')
+ggsave('/your/path/to/graphics/sum_neg_weight_gbs.pdf')
 
 #Seem to have a correlation of net sentiment with length
 cor.test(results_total[report_type=='gb_nb',]$total, results_total[report_type=='gb_nb',]$net_sum_weight)
@@ -411,7 +411,7 @@ filtered %>%
   labs(y='Weighted net sentiment in absolute values',
        x= 'Company')
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/barplot_nb.pdf')
+ggsave('/your/path/to/graphics/barplot_nb.pdf')
 
 
 filtered %>% 
@@ -472,7 +472,7 @@ max(filtered$net_sum_weight)
          x= 'Word')+
     coord_flip()
   
-  ggsave('/Users/Constanze/Desktop/uni/ba arbeit/nb_ceo_most_sentiment.pdf')
+  ggsave('/your/path/to/graphics/nb_ceo_most_sentiment.pdf')
  
   nb_ceo_all %>% 
     filter(report=='innogy_nb_ceo'|report=='alstria_nb_ceo'|report=='fraport_nb_ceo') %>% 
@@ -497,10 +497,10 @@ max(filtered$net_sum_weight)
          x= 'Word')+
     coord_flip()    
   
-  ggsave('/Users/Constanze/Desktop/uni/ba arbeit/nb_ceo_least_sentiment.pdf')
+  ggsave('/your/path/to/graphics/nb_ceo_least_sentiment.pdf')
   
   
-  ###Looking in detail at INnogy
+  ###Looking in detail at Innogy
   nb_nb_all %>% 
     filter(report=='innogy_nb_nb') %>% 
     arrange((weighted_sent)) %>% 
@@ -539,7 +539,7 @@ nb_ceo_all %>%
   labs(y='Weighted sentiment score in absolute values',
        x= 'Word')  
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/innogy_words.pdf')
+ggsave('/your/path/to/graphics/innogy_words.pdf')
 
 nb_ceo_all %>% 
   filter(report=='alstria_nb_ceo') %>% 
@@ -609,7 +609,7 @@ ggplot(filtered, aes(company,sum_pos_weight, fill=report_type))+
   labs(y='Sum of weighted positive scores',
        x= 'Company')  
 
- ggsave('/Users/Constanze/Desktop/uni/ba arbeit/sum_pos_weight_nbs.pdf')
+ ggsave('/your/path/to/graphics/sum_pos_weight_nbs.pdf')
 
 ##Join everything together
 
@@ -637,8 +637,6 @@ all_results %>%
   geom_bar(stat = 'identity')+
   coord_flip()
 
-library('viridis')
-
 report_names <- c(
   'gb_nb'="Annual Report (Sustainability)",
   'gb_ceo'="Annual Report (CEO)",
@@ -663,7 +661,6 @@ company_names$real_name
 
 all_results <- left_join(all_results, company_names)
 
-library(dplyr)
 all_results %>% 
   ggplot(., aes(reorder((real_name), net_sum_weight), net_sum_weight, fill=net_sent_in_perc)) +
   geom_bar(stat = 'identity')+
@@ -679,7 +676,7 @@ all_results %>%
        y='Weighted net sentiment', 
        fill='Net sentiment in percent')
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/net_sum_weight_per_report.pdf', height = 50, width = 35, units = 'cm')
+ggsave('/your/path/to/graphics/net_sum_weight_per_report.pdf', height = 50, width = 35, units = 'cm')
 
 all_results %>% 
   ggplot(., aes(reorder((real_name), net_sent_in_perc), net_sent_in_perc, fill=net_sum_weight)) +
@@ -697,13 +694,7 @@ all_results %>%
        y='Weighted net sentiment', 
        fill='Net sentiment in percent')
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/net_sent_in_perc_per_report.pdf', height = 50, width = 35, units = 'cm')
-
-cor(all_results$net_sent_in_perc, all_results$net_sum_weight)
-cor.test(all_results$net_sent_in_perc, all_results$net_sum_weight)
-cov(all_results$net_sent_in_perc, all_results$net_sum_weight)
-cor.test(all_results$net_sent_in_perc, all_results$net_sum_weight, method = 'spearman')
-
+ggsave('/your/path/to/graphics/net_sent_in_perc_per_report.pdf', height = 50, width = 35, units = 'cm')
 
 ggplot(all_results, aes(net_sum_weight, net_sent_in_perc, color=report_type))+
   scale_color_viridis(discrete = T, option = "D", 
@@ -721,7 +712,7 @@ ggplot(all_results, aes(net_sum_weight, net_sent_in_perc, color=report_type))+
        y='Net sentiment in percent', 
        col='Report type')
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/scatterplot.pdf')
+ggsave('/your/path/to/graphics/scatterplot.pdf')
 
 #Test correlation between two sentiment metrics, weighted and unweighted 
 all_results %>% 
@@ -790,7 +781,7 @@ dplyr::select(-c(`mean(sum_neg_weight)`, `mean(sum_pos_weight)`,`mean(net_sum_we
   geom_bar(position = 'fill', stat = 'identity')
 
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/proportion_nbs_fill.pdf')
+ggsave('/your/path/to/graphics/proportion_nbs_fill.pdf')
 
 difference_in_length %>% 
   select(-c(`mean(sum_neg_weight)`, `mean(sum_pos_weight)`,`mean(net_sum_weight)`)) %>% 
@@ -799,7 +790,7 @@ difference_in_length %>%
   scale_fill_viridis(discrete = T, option = "D")+
   geom_bar(position = 'dodge', stat = 'identity')
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/proportion_nbs_dodge.pdf')
+ggsave('/your/path/to/graphics/proportion_nbs_dodge.pdf')
 
   
 #weighted sentiment scores
@@ -810,7 +801,7 @@ difference_in_length %>%
   scale_fill_viridis(discrete = T, option = "D")+
   geom_bar(position = 'fill', stat = 'identity')
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/score_nbs_fill.pdf')
+ggsave('/your/path/to/graphics/score_nbs_fill.pdf')
 
 difference_in_length %>% 
   select(-c(`mean(positivity_in_perc)`, `mean(negativity_in_perc)`, `mean(net_sent_in_perc)`)) %>% 
@@ -819,7 +810,7 @@ difference_in_length %>%
   scale_fill_viridis(discrete = T, option = "D")+
   geom_bar(position = 'dodge', stat = 'identity')
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/score_nb_dodge.pdf')
+ggsave('/your/path/to/graphics/score_nb_dodge.pdf')
 
 #Not looking on aggregate but individual level
 all_results[-1] %>% 
@@ -840,7 +831,7 @@ all_results[-1] %>%
     scale_fill_viridis(discrete = T, option = "D")+
     facet_wrap(facets =  vars(company), nrow = 3)
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/individual_nbs.pdf', height = 20, width = 30, units = 'cm')
+ggsave('/your/path/to/graphics/individual_nbs.pdf', height = 20, width = 30, units = 'cm')
 
 ## Descriptive statistics
 all_results[-1] %>% 
@@ -886,7 +877,7 @@ all_results[-1] %>%
        y='Weighted net sentiment', 
        col='Report type')
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/ceoletters_weighted.pdf')
+ggsave('/your/path/to/graphics/ceoletters_weighted.pdf')
 
 all_results[-1] %>% 
   filter((report_type=='nb_ceo'|report_type=='gb_ceo')&
@@ -908,7 +899,7 @@ all_results[-1] %>%
        y='Net sentiment in percent', 
        col='Report type')
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/ceoletters_net.pdf')
+ggsave('/your/path/to/graphics/ceoletters_net.pdf')
 
 all_results[-1] %>% 
   filter((report_type=='nb_ceo'|report_type=='gb_ceo')&
@@ -929,7 +920,7 @@ all_results[-1] %>%
   labs(x='Company',
        y='Weighted sentiment score')
 
-ggsave('/Users/Constanze/Desktop/uni/ba arbeit/ceolettersaddedsent.pdf')
+ggsave('/your/path/to/graphics/ceolettersaddedsent.pdf')
 
 ############Cluster analysis
 gradient.color <- list(low = "steelblue",  high = "white")
